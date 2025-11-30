@@ -164,3 +164,17 @@ The fusion strategy allows the model to learn complementary representations: the
 13. Huang, G., Liu, Z., Van Der Maaten, L., & Weinberger, K. Q. (2017). Densely connected convolutional networks. Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition.
 
 ---
+
+# Results
+
+![Training Curves](./result/training_curves.png)
+*Figure 3: Training Curves from the model and showing no overfitting.*
+
+![Confusion Matrix](./result/confusion_matrix.png)
+*Figure 4: Confusion matrix from the model that show the model can predict properly with high Accuracy and high AUC.*
+
+![Tumor Image](./result/tda_sample_008.png)
+*Figure 5: Example of how model processes the images to detect tumor and the intensity of the Grad-CAM++ is up to 1.*
+
+![Normal Image](./result/tda_sample_006.png)
+*Figure 6: Different with the tumor image, for the normal one the intensity cannot reach 1 and the point cloud not pointing properly.*
