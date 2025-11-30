@@ -177,4 +177,4 @@ The fusion strategy allows the model to learn complementary representations: the
 *Figure 5: Example of how model processes the images to detect tumor and the intensity of the Grad-CAM++ is up to 1.*
 
 ![Normal Image](./result/tda_sample_006.png)
-*Figure 6: Different with the tumor image, for the normal one the intensity cannot reach 1 and the point cloud not pointing properly.*
+*Figure 6: Different with the tumor image, for the normal one the intensity cannot reach 1.*
