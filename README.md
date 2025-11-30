@@ -63,7 +63,7 @@ Data augmentation is applied with a multiplier of 2×, effectively tripling the 
 
 Our proposed architecture consists of three main components operating in a two-stage training paradigm: (1) a CNN branch based on VGG19 for hierarchical feature extraction, (2) a topology branch that extracts structural features via TDA from Grad-CAM++ attention maps, and (3) a fusion branch that combines both feature representations for final classification.
 
-![Main Architecture](./figure/Arch_VGG.pdf)
+![Main Architecture](./figure/Arch_VGG.png)
 *Figure 1: Overall architecture showing VGG19 backbone, CNN branch, topology branch (with GradCAM++ and TDA), and fusion branch.*
 
 ### Stage 1: CNN Branch
@@ -125,7 +125,7 @@ The use of persistent homology has been shown to provide stable and discriminati
 
 Persistence diagrams are vectorized using persistence images [11], a stable and differentiable representation suitable for machine learning. Each persistence diagram is converted into a 64×64 grid by placing Gaussian kernels at the birth-death coordinates of each topological feature, weighted by their persistence (lifetime). This process yields two 64×64 images for H₀ and H₁, which are flattened and concatenated to form an 8192-dimensional feature vector.
 
-![Topology Compressor Details](./figure/Arch_topo_compress.pdf)
+![Topology Compressor Details](./figure/Arch_topo_compress.png)
 *Figure 2: Detailed architecture of the topology compressor showing the transformation from persistence images (8192-dim) through three fully connected layers with layer normalization and dropout to the final 128-dimensional topology features.*
 
 #### Topology Compressor
