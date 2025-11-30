@@ -153,54 +153,6 @@ Note that dropout is not applied in the fusion branch, as sufficient regularizat
 
 The fusion strategy allows the model to learn complementary representations: the CNN branch captures local texture and intensity patterns, while the topology branch captures global structural characteristics. This multi-view approach has been shown to improve robustness and generalization in medical imaging [13].
 
-### Training Strategy
-
-#### Two-Stage Training
-
-We adopt a two-stage training approach to stabilize learning:
-
-**Stage 1 (CNN-only):**
-- Train only the CNN branch (VGG19 + FC layers) with frozen backbone layers
-- Optimize with Adam optimizer (lr=1e-4, weight_decay=1e-4)
-- Use ReduceLROnPlateau scheduler (factor=0.5, patience=7)
-- Binary cross-entropy loss with early stopping (patience=20)
-- Epochs: 50
-
-**Stage 2 (Topology + Fusion):**
-- Freeze CNN branch, train topology branch and fusion layers
-- Grad-CAM++ computed in detached mode to prevent gradient backpropagation
-- Optimize with Adam optimizer (lr=1e-4, weight_decay=1e-4)
-- Use ReduceLROnPlateau scheduler (factor=0.5, patience=10)
-- Binary cross-entropy loss with early stopping (patience=30)
-- Epochs: 100
-
-This staged approach prevents the topology branch from destabilizing the pre-trained CNN features and allows each component to specialize before integration.
-
-#### Regularization
-
-Multiple regularization techniques are employed to prevent overfitting:
-- **Weight Decay (L2 regularization):** λ = 1e-4 on all trainable parameters
-- **Dropout:** Applied strategically only in:
-  - VGG19 backbone (p=0.5 after features layer)
-  - Topology compressor (p=0.3 after first layer, p=0.2 after second layer)
-- **Batch Normalization:** Applied in CNN branch (after FC-512) and fusion branch (after FC-256)
-- **Layer Normalization:** Applied in topology compressor (after each linear layer)
-- **Data Augmentation:** 2× multiplier on training data
-- **Early Stopping:** Based on validation loss with patience thresholds
-- **Two-Stage Training:** Prevents topology branch from destabilizing pre-trained CNN features
-- **Gradient Isolation:** Detached Grad-CAM++ computation isolates topology optimization
-
-The strategic placement of dropout reflects component-specific needs: the topology branch processes high-dimensional persistence features (8192-dim) prone to overfitting and thus requires explicit dropout, while CNN and fusion branches achieve sufficient regularization through batch normalization and weight decay given their more direct optimization paths.
-
-### Implementation Details
-
-The model is implemented in PyTorch using:
-- VGG19 pretrained weights from torchvision
-- torch-topological library for differentiable TDA operations
-- Custom Grad-CAM++ implementation following [3]
-
-Training is performed on GPU with batch size 8 and mixed precision (when available) to reduce memory consumption.
-
 ### References (Methods)
 8. Tajbakhsh, N., et al. (2016). Convolutional neural networks for medical image analysis: Full training or fine tuning? IEEE Transactions on Medical Imaging, 35(5), 1299-1312.
 9. Ioffe, S., & Szegedy, C. (2015). Batch normalization: Accelerating deep network training by reducing internal covariate shift. International Conference on Machine Learning.
