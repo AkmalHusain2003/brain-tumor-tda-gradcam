@@ -8,15 +8,6 @@ This work presents a novel two-stage architecture that combines deep learning wi
 
 The integration of TDA with deep learning has shown promise in various medical imaging applications [6, 7], as topological features can capture shape-based patterns that are invariant to certain transformations. Our architecture explicitly models these topological characteristics through Vietoris-Rips complexes and persistence diagrams, providing complementary information to standard CNN features.
 
-### References
-1. Simonyan, K., & Zisserman, A. (2014). Very deep convolutional networks for large-scale image recognition. arXiv preprint arXiv:1409.1556.
-2. Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. Advances in Neural Information Processing Systems, 25.
-3. Chattopadhay, A., Sarkar, A., Howlader, P., & Balasubramanian, V. N. (2018). Grad-cam++: Generalized gradient-based visual explanations for deep convolutional networks. 2018 IEEE Winter Conference on Applications of Computer Vision (WACV).
-4. Edelsbrunner, H., & Harer, J. (2010). Computational topology: an introduction. American Mathematical Society.
-5. Carlsson, G. (2009). Topology and data. Bulletin of the American Mathematical Society, 46(2), 255-308.
-6. Qaiser, T., et al. (2019). Persistent homology for fast tumor segmentation in whole slide histology images. Procedia Computer Science, 90, 119-124.
-7. Hofer, C., Kwitt, R., Niethammer, M., & Uhl, A. (2017). Deep learning with topological signatures. Advances in Neural Information Processing Systems, 30.
-
 ---
 
 ## Data
@@ -155,14 +146,6 @@ Note that dropout is not applied in the fusion branch, as sufficient regularizat
 
 The fusion strategy allows the model to learn complementary representations: the CNN branch captures local texture and intensity patterns, while the topology branch captures global structural characteristics. This multi-view approach has been shown to improve robustness and generalization in medical imaging [13].
 
-### References (Methods)
-8. Tajbakhsh, N., et al. (2016). Convolutional neural networks for medical image analysis: Full training or fine tuning? IEEE Transactions on Medical Imaging, 35(5), 1299-1312.
-9. Ioffe, S., & Szegedy, C. (2015). Batch normalization: Accelerating deep network training by reducing internal covariate shift. International Conference on Machine Learning.
-10. Clough, J. R., et al. (2020). A topological loss function for deep-learning based image segmentation using persistent homology. IEEE Transactions on Pattern Analysis and Machine Intelligence, 44(12), 8766-8778.
-11. Adams, H., et al. (2017). Persistence images: A stable vector representation of persistent homology. Journal of Machine Learning Research, 18(8), 1-35.
-12. Ba, J. L., Kiros, J. R., & Hinton, G. E. (2016). Layer normalization. arXiv preprint arXiv:1607.06450.
-13. Huang, G., Liu, Z., Van Der Maaten, L., & Weinberger, K. Q. (2017). Densely connected convolutional networks. Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition.
-
 ---
 
 # Results
@@ -170,11 +153,31 @@ The fusion strategy allows the model to learn complementary representations: the
 ![Training Curves](./result/training_curves.png)
 *Figure 3: Training Curves from the model and showing no overfitting.*
 
+
 ![Confusion Matrix](./result/confusion_matrix.png)
 *Figure 4: Confusion matrix from the model that show the model can predict properly with high Accuracy and high AUC.*
+
 
 ![Tumor Image](./result/tda_sample_008.png)
 *Figure 5: Example of how model processes the images to detect tumor and the intensity of the Grad-CAM++ is up to 1.*
 
+
 ![Normal Image](./result/tda_sample_006.png)
 *Figure 6: Different with the tumor image, for the normal one the intensity cannot reach 1.*
+
+---
+
+### References
+1. Simonyan, K., & Zisserman, A. (2014). Very deep convolutional networks for large-scale image recognition. arXiv preprint arXiv:1409.1556.
+2. Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. Advances in Neural Information Processing Systems, 25.
+3. Chattopadhay, A., Sarkar, A., Howlader, P., & Balasubramanian, V. N. (2018). Grad-cam++: Generalized gradient-based visual explanations for deep convolutional networks. 2018 IEEE Winter Conference on Applications of Computer Vision (WACV).
+4. Edelsbrunner, H., & Harer, J. (2010). Computational topology: an introduction. American Mathematical Society.
+5. Carlsson, G. (2009). Topology and data. Bulletin of the American Mathematical Society, 46(2), 255-308.
+6. Qaiser, T., et al. (2019). Persistent homology for fast tumor segmentation in whole slide histology images. Procedia Computer Science, 90, 119-124.
+7. Hofer, C., Kwitt, R., Niethammer, M., & Uhl, A. (2017). Deep learning with topological signatures. Advances in Neural Information Processing Systems, 30.
+8. Tajbakhsh, N., et al. (2016). Convolutional neural networks for medical image analysis: Full training or fine tuning? IEEE Transactions on Medical Imaging, 35(5), 1299-1312.
+9. Ioffe, S., & Szegedy, C. (2015). Batch normalization: Accelerating deep network training by reducing internal covariate shift. International Conference on Machine Learning.
+10. Clough, J. R., et al. (2020). A topological loss function for deep-learning based image segmentation using persistent homology. IEEE Transactions on Pattern Analysis and Machine Intelligence, 44(12), 8766-8778.
+11. Adams, H., et al. (2017). Persistence images: A stable vector representation of persistent homology. Journal of Machine Learning Research, 18(8), 1-35.
+12. Ba, J. L., Kiros, J. R., & Hinton, G. E. (2016). Layer normalization. arXiv preprint arXiv:1607.06450.
+13. Huang, G., Liu, Z., Van Der Maaten, L., & Weinberger, K. Q. (2017). Densely connected convolutional networks. Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition.
