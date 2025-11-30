@@ -97,9 +97,7 @@ Grad-CAM++ [3] is employed to generate class-discriminative attention maps from 
 
 Formally, given the final convolutional feature maps $A^k$ and the gradients of the class score $y^c$ with respect to $A^k$, Grad-CAM++ computes weighted combinations using:
 
-```
 $α^kc = Σ_i Σ_j (∂²y^c / ∂A^k_ij²) / (2(∂²y^c / ∂A^k_ij²) + Σ_i Σ_j A^k_ij (∂³y^c / ∂A^k_ij³))$
-```
 
 The resulting attention map is upsampled to the input resolution (224×224) and normalized to [0, 1].
 
