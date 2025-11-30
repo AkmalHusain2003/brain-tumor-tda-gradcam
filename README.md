@@ -95,10 +95,10 @@ While CNNs excel at learning hierarchical features, they may not explicitly capt
 
 Grad-CAM++ [3] is employed to generate class-discriminative attention maps from the VGG19 backbone. Unlike standard Grad-CAM, Grad-CAM++ provides better localization for multiple objects and produces more visually coherent attention maps through pixel-wise weighting of gradients. The attention map highlights regions of the input image that most strongly influence the classification decision, effectively serving as a learned saliency detector.
 
-Formally, given the final convolutional feature maps A^k and the gradients of the class score y^c with respect to A^k, Grad-CAM++ computes weighted combinations using:
+Formally, given the final convolutional feature maps $A^k$ and the gradients of the class score $y^c$ with respect to $A^k$, Grad-CAM++ computes weighted combinations using:
 
 ```
-α^kc = Σ_i Σ_j (∂²y^c / ∂A^k_ij²) / (2(∂²y^c / ∂A^k_ij²) + Σ_i Σ_j A^k_ij (∂³y^c / ∂A^k_ij³))
+$α^kc = Σ_i Σ_j (∂²y^c / ∂A^k_ij²) / (2(∂²y^c / ∂A^k_ij²) + Σ_i Σ_j A^k_ij (∂³y^c / ∂A^k_ij³))$
 ```
 
 The resulting attention map is upsampled to the input resolution (224×224) and normalized to [0, 1].
